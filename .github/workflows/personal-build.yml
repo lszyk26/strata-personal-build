@@ -59,10 +59,10 @@ jobs:
           printf 'storeFile=release.jks\nstorePassword=strata-personal-1\nkeyAlias=strata\nkeyPassword=strata-personal-1\n' > keystore.properties
           echo "sdk.dir=$ANDROID_HOME" > local.properties
 
-      - name: Assemble release (fall back to debug)
+      - name: Assemble per-ABI release (fall back to debug)
         run: |
           mkdir -p logs
-          if ./gradlew --stacktrace --no-daemon :app:assembleRelease > logs/release.log 2>&1; then
+          if ./gradlew --stacktrace --no-daemon :app:assembleRelease -Pstrata.splitApks=true > logs/release.log 2>&1; then
             echo "release=ok" | tee logs/status
           else
             echo "release=FAILED" | tee logs/status
