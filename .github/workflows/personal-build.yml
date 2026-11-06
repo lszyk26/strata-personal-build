@@ -25,6 +25,15 @@ jobs:
         with:
           targets: aarch64-linux-android
 
+      - name: Cache cargo registry and target dir
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            native/target
+          key: cargo-${{ hashFiles('native/Cargo.lock') }}-arm64
+
       - name: Install cargo-ndk
         run: cargo install cargo-ndk --locked
 
@@ -71,6 +80,17 @@ jobs:
           find app/build/outputs/apk/release -name '*.apk' -exec cp {} out/ \;
           (cd out && sha256sum *.apk > SHA256SUMS.txt)
           ls -la out
+
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -eux
+          VERSION=$(grep '^strata.versionName=' gradle.properties | cut -d= -f2)
+          gh release delete "v${VERSION}-personal" --yes --cleanup-tag || true
+          gh release create "v${VERSION}-personal" out/* \
+            --title "Strata ${VERSION} personal build" \
+            --notes "Unofficial personal build of CluvexStudio/Strata (AGPL-3.0), arm64 only, signed with a self-generated key. Changes: version bumped to ${VERSION}, MIME table for office/html/archive types fixed."
 
       - uses: actions/upload-artifact@v4
         with:
