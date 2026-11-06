@@ -12,8 +12,9 @@ import java.io.File
 object IntentUtils {
     /**
      * Extensions whose MIME type Android's built-in table gets wrong or does not know at all.
-     * Without these, "Open with" falls back to `*/*`, which makes the system picker offer
-     * apps that cannot open the file (office formats) or nothing at all (html, so no browser).
+     * Without these, "Open with" falls back to the wildcard MIME type, which makes the system
+     * picker offer apps that cannot open the file (office formats) or nothing at all
+     * (html, so no browser is ever offered).
      */
     private val knownMime = mapOf(
         "html" to "text/html",
