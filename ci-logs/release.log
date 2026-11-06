@@ -18,24 +18,24 @@ Calculating task graph as no cached configuration is available for tasks: :app:a
 > Task :app:preBuild UP-TO-DATE
 > Task :app:preReleaseBuild UP-TO-DATE
 > Task :app:mergeReleaseJniLibFolders
-> Task :app:mergeReleaseArtProfile
-> Task :app:compileReleaseAidl
+> Task :app:checkReleaseDuplicateClasses
 > Task :app:generateReleaseBuildConfig
 > Task :app:generateReleaseResources
-> Task :app:mergeReleaseNativeLibs
-> Task :app:checkReleaseDuplicateClasses
-> Task :app:processReleaseNavigationResources
-> Task :app:javaPreCompileRelease
-> Task :app:stripReleaseDebugSymbols
-> Task :app:extractReleaseNativeSymbolTables
+> Task :app:mergeReleaseArtProfile
 > Task :app:packageReleaseResources
-> Task :app:mergeReleaseNativeDebugMetadata NO-SOURCE
-> Task :app:mapReleaseSourceSetPaths
-> Task :app:compileReleaseNavigationResources
-> Task :app:parseReleaseLocalResources
+> Task :app:compileReleaseAidl
+> Task :app:javaPreCompileRelease
+> Task :app:mergeReleaseNativeLibs
+> Task :app:processReleaseNavigationResources
+> Task :app:stripReleaseDebugSymbols
 > Task :app:checkReleaseAarMetadata
+> Task :app:mapReleaseSourceSetPaths
+> Task :app:extractReleaseNativeSymbolTables
+> Task :app:mergeReleaseNativeDebugMetadata NO-SOURCE
+> Task :app:compileReleaseNavigationResources
 > Task :app:createReleaseCompatibleScreenManifests
 > Task :app:extractDeepLinksRelease
+> Task :app:parseReleaseLocalResources
 > Task :app:generateReleaseRFile
 > Task :app:processReleaseMainManifest
 > Task :app:processReleaseManifest
@@ -73,6 +73,6 @@ WARNING: /home/runner/work/strata-personal-build/strata-personal-build/app/build
 > Task :app:assembleRelease
 > Task :app:createReleaseApkListingFileRedirect
 
-BUILD SUCCESSFUL in 6m 21s
+BUILD SUCCESSFUL in 8m 47s
 48 actionable tasks: 48 executed
 Configuration cache entry stored.
